@@ -8,3 +8,4 @@ db/oauth_db.go
 config.yml
 server_main_land
 /bin
+/vendor

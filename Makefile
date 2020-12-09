@@ -24,7 +24,7 @@ exec:
 ## install: Install missing dependencies. Runs `go get` internally. e.g; make install get=github.com/foo/bar
 install: go-get
 
-## start: Start in development mode. Auto-starts when code changes.
+## start: Start in development mode.
 start:
 	bash -c "trap 'make stop' EXIT; $(MAKE) compile start-server"
 
