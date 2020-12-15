@@ -13,7 +13,8 @@ Environment Variables (in .env file)
 
 Nome | descrição | valores | Valor Padrão |
 -----|-----------|---------|--------------|
-PORT | Define server port | ```9999``` | ```8085```
+PORT | Define server port | ```9999``` | ```9090```
+GO_ENV | Define the Environment | ```local```, ```homol```, ```prod``` | ```local```
 
 ### Make swagger files
 1. Baixe o `swag` usando o comando:
@@ -28,6 +29,17 @@ swag init -g ./main.go
 
 - Mais informações sobre header definitions e parametros para definição de documetação nos cabeçalhos de funções e objetos de retorno: [aqui](https://github.com/swaggo/swag)
 
+### Run Docker
+
+```shell
+docker-compose up --build
+```
+
+### Run Tests
+
+```shell
+go test ./...
+```
 
 --------------------------------------------------------------
 

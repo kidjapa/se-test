@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Docker/Go/Dockerfile
     environment:
-      GO_ENV: local
+      GO_ENV: homol
       PORT: 9090
       WAIT_HOSTS: mysql:3306
     container_name: golang_app

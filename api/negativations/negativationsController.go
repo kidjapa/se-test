@@ -39,7 +39,7 @@ func(h *Handler) GetByCompanyDocument(companyDocument string) (ns *[]models.Nega
     ns = &[]models.Negativations{}
     dbRes := h.DbHandler.Conn.Model(&models.Negativations{}).
         Where("company_document = ?", companyDocument).
-        Find(ns)
+        First(ns)
     if dbRes.Error != nil {
         err = dbRes.Error
     }
@@ -54,6 +54,7 @@ func(h *Handler) GetByCustomerDocument(customerDocument string) (ns *[]models.Ne
     ns = &[]models.Negativations{}
     dbRes := h.DbHandler.Conn.Model(&models.Negativations{}).
         Where("customer_document = ?", customerDocument).
+        Order("id").
         Find(ns)
     if dbRes.Error != nil {
         err = dbRes.Error

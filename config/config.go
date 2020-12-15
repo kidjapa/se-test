@@ -30,9 +30,9 @@ type AccessUser struct {
 func GetConfig() Configuration {
     configuration := Configuration{}
 
-    goEnv := "local"
-    if os.Getenv("GO_ENV") == "" {
-        goEnv = os.Getenv("GO_ENV")
+    goEnv, err := getenvStr("GO_ENV")
+    if err != nil {
+        goEnv = "local"
     }
 
     fmt.Println("======================")
@@ -52,10 +52,10 @@ func GetPortEnv() int64 {
         if port, err := getEnvInt64("PORT"); err == nil {
             return port
         } else {
-            return 8085
+            return 9090
         }
     }
-    return 8085
+    return 9090
 }
 
 func getenvStr(key string) (string, error) {
