@@ -1,8 +1,6 @@
 #!/bin/bash
 
-#delete old node process
-#sudo kill -9 $(ps x | grep node | grep gateway.js | awk '{print $1}');
-#for pid in $(ps x | grep node | grep api | awk '{print $1}' ORS=' '); do sudo kill -9 $pid; done
+# delete old node process
 declare -a portsServices=("3000")
 
 # get length of an array
