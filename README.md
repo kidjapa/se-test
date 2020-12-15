@@ -1,16 +1,37 @@
-### Test Serasa Dev
+## Test Dev
 
 ```shell
 go version: 1.15.4
 ```
 
-#### Make
+## Make
 - Run ```make help```
 - Compile: ```make compile```
 
+Environment Variables (in .env file)
+---------------------
+
+Nome | descrição | valores | Valor Padrão |
+-----|-----------|---------|--------------|
+PORT | Define server port | ```9999``` | ```8085```
+
+### Make swagger files
+1. Baixe o `swag` usando o comando:
+```shell
+go get github.com/swaggo/swag/cmd/swag
+```
+2. Dentro da raiz do projeto, execute: 
+```shell
+swag init -g ./main.go
+```
+3. Execute o projeto e acesse ```http://localhost:[PORT]/swagger/index.html``` para verificar se a documentação foi gerada corretamente
+
+- Mais informações sobre header definitions e parametros para definição de documetação nos cabeçalhos de funções e objetos de retorno: [aqui](https://github.com/swaggo/swag)
+
+
 --------------------------------------------------------------
 
-# Serasa - Teste para analista desenvolvedor
+# Teste para analista desenvolvedor
 Olá, obrigado pelo interesse em fazer parte da nossa equipe.  
 O objetivo deste teste é verificar (até certo ponto) suas habilidades de codificação e arquitetura. Para isso você receberá um problema simples onde poderá mostrar suas técnicas de desenvolvimento.
 Nós encorajamos você a exagerar um pouco na solução para mostrar do que você é capaz.
@@ -22,8 +43,10 @@ Como este é um processo de "code review", evite adicionar código gerado ao pro
 Aqui no Serasa, nós utilizamos o [Docker](https://www.docker.com/products/docker) para executar as aplicações, por isso, pedimos que você faça o mesmo neste teste. Isso garante que tenhamos um resultado idêntico ao seu quando testarmos sua aplicação.
 
 ## Descrição do problema:
-A empresa XPTO tem uma aplicação legada (mainframe) de negativações que não está suportando a demanda atual, esta aplicação não pode ser alterada, portanto, é necessário construir um serviço que atenda a demanda, como Façade.
-Esta aplicação deve consumir os dados do legado e persistir numa base intermediária, devendo também expor uma API para acesso ao dados das negativações recebendo como parametro o CPF do cliente. 
+A empresa XPTO tem uma aplicação legada (mainframe) de negativações que não está suportando a demanda atual, esta 
+aplicação não pode ser alterada, portanto, é necessário construir um serviço que atenda a demanda, como Façade.
+Esta aplicação deve consumir os dados do legado e persistir numa base intermediária, devendo também expor uma API para 
+acesso ao dados das negativações recebendo como parametro o CPF do cliente. 
 
 ## Instruções
 - Para simular a aplicação legada a ser consumida, você deverá subir um servidor com o arquivo negativacoes.json (sugestão: json-server)

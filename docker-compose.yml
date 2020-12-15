@@ -1,0 +1,34 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Docker/Go/Dockerfile
+    environment:
+      GO_ENV: local
+      PORT: 9090
+      WAIT_HOSTS: mysql:3306
+    container_name: golang_app
+    command: sh -c "/wait && ./se-test"
+    ports:
+      - "9090:9090"
+    tty: true
+    depends_on:
+      - mysql
+  mysql:
+    build:
+      context: ./Docker/MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: se_test
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      MYSQL_PORT: 3306
+    container_name: golang_db
+    command:
+      - --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    tty: true

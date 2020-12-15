@@ -69,6 +69,7 @@ go-clean:
 	@echo "  >  Cleaning build cache"
 	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go clean
 
+.PHONY: help
 all: help
 help: Makefile
 	@echo

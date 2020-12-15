@@ -1,0 +1,148 @@
+basePath: /api
+definitions:
+  models.Negativations:
+    properties:
+      company_document:
+        type: string
+      company_name:
+        type: string
+      contract:
+        type: string
+      customer_document:
+        type: string
+      debt_date:
+        type: string
+      id:
+        type: integer
+      inclusion_date:
+        type: string
+      value:
+        type: number
+    type: object
+  types.DefaultMessageReturn:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+      message:
+        type: string
+    type: object
+host: 127.0.0.1:9090
+info:
+  contact: {}
+  description: Se-test Bruno Luiz Katzjarowski
+  license: {}
+  title: Se-test Bruno Luiz Katzjarowski
+  version: "1.0"
+paths:
+  /negativations/{id}:
+    get:
+      description: Get a Negativations by the id
+      parameters:
+      - description: Negativation DB id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Negativations'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+      security:
+      - BasicAuth: []
+      summary: Get a Negativations by the id
+      tags:
+      - negativations
+  /negativations/company_document/{company_document}:
+    get:
+      description: Get a Negativations by the Company Document
+      parameters:
+      - description: Company Document
+        in: path
+        name: company_document
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            items:
+              $ref: '#/definitions/models.Negativations'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+      security:
+      - BasicAuth: []
+      summary: Get a Negativations by the Company Document
+      tags:
+      - negativations
+  /negativations/customer_document/{customer_document}:
+    get:
+      description: Get a Negativations by the Customer Document
+      parameters:
+      - description: Customer Document
+        in: path
+        name: company_document
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            items:
+              $ref: '#/definitions/models.Negativations'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.DefaultMessageReturn'
+      security:
+      - BasicAuth: []
+      summary: Get a Negativations by the Customer Document
+      tags:
+      - negativations
+schemes:
+- http
+- https
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
