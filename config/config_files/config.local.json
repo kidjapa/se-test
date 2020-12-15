@@ -6,5 +6,8 @@
   "db_name": "se_test",
   "access_users": [
     { "user": "bruno", "pass": "zShM39hkPqcyjQu" }
-  ]
+  ],
+  "legacy_access": {
+    "url": "http://localhost:3000"
+  }
 }

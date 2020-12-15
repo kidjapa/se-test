@@ -1,0 +1,11 @@
+db/oauth_db.go
+.vscode/settings.json
+/.idea
+/err
+/model
+/logs/*.*
+/truncate-logs/*.*
+config.yml
+server_main_land
+/bin
+/vendor

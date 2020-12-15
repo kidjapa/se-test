@@ -61,3 +61,12 @@ func(h *Handler) GetByCustomerDocument(customerDocument string) (ns *[]models.Ne
     }
     return
 }
+
+func(h *Handler) GetAll() (n *[]models.Negativations, err error) {
+    n = &[]models.Negativations{}
+    dbRes := h.DbHandler.Conn.Model(&models.Negativations{}).Find(n)
+    if dbRes.Error != nil {
+        err = dbRes.Error
+    }
+    return
+}

@@ -3,6 +3,7 @@ package main
 import (
     "github.com/labstack/echo/v4"
     "net/http"
+    "se-test/api/legacy"
     "se-test/api/negativations"
     "se-test/config"
     "se-test/db"
@@ -46,7 +47,9 @@ func main() {
     d := db.NewDbHandler()
 
     n := negativations.NewHandler(d)
-    h := handler.NewHandler(n)
+    l := legacy.NewHandler(d)
+
+    h := handler.NewHandler(n, l)
 
     h.Register(v1)
     r.Logger.Fatal(r.Start(":" + strconv.FormatInt(config.GetPortEnv(), 10)))

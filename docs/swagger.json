@@ -14,6 +14,113 @@
     "host": "127.0.0.1:9090",
     "basePath": "/api",
     "paths": {
+        "/legacy/": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Get a Negativations by the Customer Document",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "negativations"
+                ],
+                "summary": "Get a Negativations by the Customer Document",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Customer Document",
+                        "name": "company_document",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Negativations"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    }
+                }
+            }
+        },
+        "/legacy/start_import": {
+            "get": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "description": "Get a Negativations by the Customer Document",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "negativations"
+                ],
+                "summary": "Get a Negativations by the Customer Document",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Customer Document",
+                        "name": "company_document",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/types.DefaultMessageReturn"
+                        }
+                    }
+                }
+            }
+        },
         "/negativations/company_document/{company_document}": {
             "get": {
                 "security": [
@@ -76,23 +183,14 @@
                         "BasicAuth": []
                     }
                 ],
-                "description": "Get a Negativations by the Customer Document",
+                "description": "Get all negativations",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "negativations"
                 ],
-                "summary": "Get a Negativations by the Customer Document",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Customer Document",
-                        "name": "company_document",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
+                "summary": "Get all negativations",
                 "responses": {
                     "201": {
                         "description": "Created",
@@ -181,25 +279,25 @@
         "models.Negativations": {
             "type": "object",
             "properties": {
-                "company_document": {
+                "companyDocument": {
                     "type": "string"
                 },
-                "company_name": {
+                "companyName": {
                     "type": "string"
                 },
                 "contract": {
                     "type": "string"
                 },
-                "customer_document": {
+                "customerDocument": {
                     "type": "string"
                 },
-                "debt_date": {
+                "debtDate": {
                     "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "inclusion_date": {
+                "inclusionDate": {
                     "type": "string"
                 },
                 "value": {

@@ -12,19 +12,26 @@ var (
     ErrEnvVarEmpty = errors.New("getenv: environment variable empty")
 )
 
-// Representa todas as configurações da aplicação
+// Get all configurations from .json config files
 type Configuration struct {
-    DbUsername string       `json:"db_username"`
-    DbPassword string       `json:"db_password"`
-    DbPort     string       `json:"db_port"`
-    DbHost     string       `json:"db_host"`
-    DbName     string       `json:"db_name"`
-    Users      []AccessUser `json:"access_users"`
+    DbUsername   string       `json:"db_username"`
+    DbPassword   string       `json:"db_password"`
+    DbPort       string       `json:"db_port"`
+    DbHost       string       `json:"db_host"`
+    DbName       string       `json:"db_name"`
+    Users        []AccessUser `json:"access_users"`
+    LegacyAccess LegacyAccess `json:"legacy_access"`
 }
 
+// Get enabled users access list
 type AccessUser struct {
     User string `json:"user"`
     Pass string `json:"pass"`
+}
+
+// get the legacy system configurations
+type LegacyAccess struct {
+    Url string `json:"url"`
 }
 
 func GetConfig() Configuration {
@@ -76,16 +83,4 @@ func getEnvInt64(key string) (int64, error) {
     } else {
         return -1, e
     }
-}
-
-func getenvBool(key string) (bool, error) {
-    s, err := getenvStr(key)
-    if err != nil {
-        return false, err
-    }
-    v, err := strconv.ParseBool(s)
-    if err != nil {
-        return false, err
-    }
-    return v, nil
 }

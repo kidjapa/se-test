@@ -98,3 +98,25 @@ func (h *Handler) getNegativationstByCustomerDocument(c echo.Context) error {
         }
     }
 }
+
+// Get all negativations
+// @Summary Get all negativations
+// @Description Get all negativations
+// @Tags negativations
+// @Security BasicAuth
+// @Produce  json
+// @Success 201 {array} models.Negativations
+// @Failure 422 {object} types.DefaultMessageReturn
+// @Failure 404 {object} types.DefaultMessageReturn
+// @Failure 500 {object} types.DefaultMessageReturn
+// @Router /negativations/customer_document/{customer_document} [GET]
+func (h *Handler) getAllNegativations(c echo.Context) error {
+    if ns, err := h.NegativationsStore.GetAll(); err != nil {
+        return c.JSON(http.StatusInternalServerError, types.DefaultMessageReturn{
+            Code:    http.StatusInternalServerError,
+            Message: "getNegativationstById: " + err.Error(),
+        })
+    }else{
+        return c.JSON(http.StatusOK, ns)
+    }
+}

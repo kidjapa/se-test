@@ -14,7 +14,14 @@ func (h *Handler) Register(v1 *echo.Group) {
     gNegativations := v1.Group("/negativations", basicAuthMiddleware)
 
     gNegativations.GET("/:id", h.getNegativationstById)
+    gNegativations.GET("/all", h.getAllNegativations)
     gNegativations.GET("/company_document/:company_document", h.getNegativationstByCompanyDocument)
     gNegativations.GET("/customer_document/:customer_document", h.getNegativationstByCustomerDocument)
+
+    // Legacy Group Router
+    gLegacy := v1.Group("/legacy", basicAuthMiddleware)
+
+    gLegacy.GET("/", h.getLegacyAllNegativations)
+    gLegacy.GET("/start_import", h.startLegacyImport)
 
 }
